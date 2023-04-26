@@ -17,17 +17,21 @@ function MainForm() {
     setCount((prevCount) => prevCount + 1);
     console.log(count);
 
+    const mockData = {
+      data: {
+        type: "Drink choice",
+        attributes: {
+          input: [10, "Male", 20, "Yes", "Morning", "No", "Yes", 1, 2],
+        },
+      },
+    };
+
+    const mockD = JSON.stringify(mockData);
+
     axios
       .post(
         `https://api.up2tom.com/v3/decision/${modelId}`,
-        {
-          data: {
-            type: "scenario",
-            attributes: {
-              input: [10, "Male", 20, "Yes", "Morning", "No", "Yes", 1, 2],
-            },
-          },
-        },
+        { mockD },
         {
           headers: {
             Authorization: `Token ${apiKey}`,
@@ -39,7 +43,7 @@ function MainForm() {
         console.log("Response", res);
       })
       .catch((error) => {
-        console.log("Error querying model: ", error);
+        console.log("Error querying the model: ", error);
       });
   }
 
