@@ -18,10 +18,10 @@ function MainForm() {
     console.log(count);
 
     const mockData = {
-      data: {
-        type: "Drink choice",
-        attributes: {
-          input: [10, "Male", 20, "Yes", "Morning", "No", "Yes", 1, 2],
+      "data": {
+        "type": "Drink choice",
+        "attributes": {
+          "input": [10, "Male", 20, "Yes", "Morning", "No", "Yes", 1, 2],
         },
       },
     };
