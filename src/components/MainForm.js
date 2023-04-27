@@ -52,7 +52,7 @@ function MainForm() {
           },
         }
       );
-      console.log("Response", response.data);
+      console.log("Decision", response.data);
     } catch (error) {
       console.log("Error querying the model: ", error);
     }
@@ -65,7 +65,7 @@ function MainForm() {
   // }, []);
 
   function submitHandler() {
-  // setCount(prevCount => prevCount + 1);
+    // setCount(prevCount => prevCount + 1);
     fetchModelMetadata();
     queryModel();
   }
