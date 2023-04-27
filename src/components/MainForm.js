@@ -18,10 +18,10 @@ function MainForm() {
     console.log(count);
 
     const mockData = {
-      "data": {
-        "type": "Drink choice",
-        "attributes": {
-          "input": [10, "Male", 20, "Yes", "Morning", "No", "Yes", 1, 2],
+      data: {
+        type: "scDrink choiceenario",
+        attributes: {
+          input: [10.0, "Male", 20.0, "Yes", "Morning", "No", "Yes", 1.0, 2.0],
         },
       },
     };
@@ -93,3 +93,22 @@ function MainForm() {
 }
 
 export default MainForm;
+
+// const mockData2 = {
+//   data: {
+//     type: "Drink choice",
+//     attributes: {
+//       input: {
+//         INPUTVAR1: 10.0,
+//         INPUTVAR2: "Male",
+//         INPUTVAR3: 20.0,
+//         INPUTVAR4: "Yes",
+//         INPUTVAR5: "Morning",
+//         INPUTVAR6: "No",
+//         INPUTVAR7: "Yes",
+//         INPUTVAR8: 1.0,
+//         INPUTVAR9: 2.0,
+//       },
+//     },
+//   },
+// };

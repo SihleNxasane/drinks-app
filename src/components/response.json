@@ -1,0 +1,58 @@
+The above command receives JSON structured like this:
+
+{
+  "data": {
+    "type": "scenario",
+    "attributes": {
+      "input": {
+        "INPUTVAR1": 1.0,
+        "INPUTVAR2": "Yes",
+        "INPUTVAR3": "Green",
+        "INPUTVAR4": 4.0
+      }
+    }
+  }
+}
+OR
+
+{
+  "data": {
+    "type": "scenario",
+    "attributes": {
+      "input": [1.0, "Yes", "Green", 4.0]
+      }
+  }
+}
+OR
+
+{
+  "data": {
+    "type": "scenario",
+    "attributes": {
+      "input": {
+        "Cars owned?": 1.0,
+        "All paid off?": "Yes",
+        "Favorite color?": "Green",
+        "Cars owned?": 4.0
+      }
+    }
+  }
+}
+and returns JSON structured like this:
+
+{
+    "data": {
+        "type": "scenario",
+        "attributes": {
+            "timestamp": "2017-08-03T08:06:50.777Z",
+            "input": {
+              "INPUTVAR1": 1.0,
+              "INPUTVAR2": "Yes",
+              "INPUTVAR3": "Green",
+              "INPUTVAR4": 4.0
+            },
+            "decision": "Yes",
+            "meets-confidence": false
+        }
+    }
+}
