@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import InputWrapper from "./InputWrapper";
+import SubmitButton from "./SubmitButton";
+import DecisionBox from "./DecisionBox";
 
 function MainForm() {
   const [model, setModel] = useState({}); //full model for Drink Choice
-  const [inputVariables, setInputVariables] = useState([]);  //questions
+  const [inputVariables, setInputVariables] = useState([]); //questions
+  const [answers, setAnswers] = useState([]);
+  const [decision, setDecision] = useState("");
+
   const apiKey = "9307bfd5fa011428ff198bb37547f979";
   const modelId = "58d3bcf97c6b1644db73ad12";
 
@@ -68,14 +74,12 @@ function MainForm() {
     }
   };
 
-  const [count, setCount] = useState(0); // to be removed
   useEffect(() => {
     fetchModelMetadata();
     queryModel();
   }, []);
 
   function submitHandler() {
-    // setCount(prevCount => prevCount + 1);
     fetchModelMetadata();
     queryModel();
   }
@@ -83,24 +87,9 @@ function MainForm() {
   return (
     <div>
       <h1>Drink Choice</h1>
-      <form>
-        <ul>
-          {(inputVariables).map((inputVar) => (
-            <li key={inputVar.name}>
-              <label for={inputVar.name}>{inputVar.question} </label>
-              <input
-                id={inputVar.name}
-                type="text"
-                placeholder={inputVar.domain.values}
-              ></input>
-            </li>
-          ))}
-        </ul>
-
-        <button type="button" onClick={submitHandler}>
-          Submit Data
-        </button>
-      </form>
+      <InputWrapper inputs={inputVariables} />
+      <SubmitButton />
+      <DecisionBox decision="{decision}"/>
     </div>
   );
 }
