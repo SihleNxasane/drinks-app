@@ -6,66 +6,69 @@ function MainForm() {
   const [modelName, setModelName] = useState(""); //modelName: DrinkChoice
   const [metadata, setMetadata] = useState({}); //contains attributes and predition
   const [inputVariables, setInputVariables] = useState([]); //questions
-  const [count, setCount] = useState(0); // to be removed
-  const [answers, setAnswers] = useState([]);
-  const [decision, setDecision] = useState(null);
-
   const apiKey = "9307bfd5fa011428ff198bb37547f979";
   const modelId = "58d3bcf97c6b1644db73ad12";
 
-  function submitHandler() {
-    setCount((prevCount) => prevCount + 1);
-    console.log(count);
-
-    const mockData = {
-      data: {
-        type: "scDrink choiceenario",
-        attributes: {
-          input: [10.0, "Male", 20.0, "Yes", "Morning", "No", "Yes", 1.0, 2.0],
-        },
-      },
-    };
-
-    const mockD = JSON.stringify(mockData);
-
-    axios
-      .post(
-        `https://api.up2tom.com/v3/decision/${modelId}`,
-        { mockD },
+  const fetchModelMetadata = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.up2tom.com/v3/models/${modelId}`,
         {
           headers: {
             Authorization: `Token ${apiKey}`,
             "Content-Type": "application/vnd.api+json",
           },
         }
-      )
-      .then((res) => {
-        console.log("Response", res);
-      })
-      .catch((error) => {
-        console.log("Error querying the model: ", error);
-      });
-  }
+      );
+      setModel(response.data.data);
+      setModelName(model.attributes.name);
+      setMetadata(model.attributes.metadata);
+      setInputVariables(model.attributes.metadata.attributes);
+      console.log("fetched Model Metadata", metadata);
+    } catch (error) {
+      console.log("Could not fetch the Model Metadata", error);
+    }
+  };
 
-  useEffect(() => {
-    axios
-      .get(`https://api.up2tom.com/v3/models/${modelId}`, {
-        headers: {
-          Authorization: `Token ${apiKey}`,
-          "Content-Type": "application/vnd.api+json",
+  const queryModel = async () => {
+    const mockData = {
+      data: {
+        type: "Drink choice",
+        attributes: {
+          input: [10.0, "Male", 20.0, "Yes", "Morning", "No", "Yes", 1.0, 2.0],
         },
-      })
-      .then((res) => {
-        setModel(res.data.data);
-        setModelName(model.attributes.name);
-        setMetadata(model.attributes.metadata);
-        setInputVariables(model.attributes.metadata.attributes);
-        console.log("Request", model);
-      })
-      .catch((error) => {
-        console.log("Could not fetch the model", error);
-      });
-  }, [count]);
+      },
+    };
+    console.log("Mock Data", mockData);
+
+    try {
+      const response = await axios.post(
+        `https://api.up2tom.com/v3/decision/${modelId}`,
+        { mockData },
+        {
+          headers: {
+            Authorization: `Token ${apiKey}`,
+            "Content-Type": "application/vnd.api+json",
+          },
+        }
+      );
+      console.log("Response", response.data);
+    } catch (error) {
+      console.log("Error querying the model: ", error);
+    }
+  };
+
+  // const [count, setCount] = useState(0); // to be removed
+  // useEffect(() => {
+  //   fetchModelMetadata();
+  //   queryModel();
+  // }, []);
+
+  function submitHandler() {
+  // setCount(prevCount => prevCount + 1);
+    fetchModelMetadata();
+    queryModel();
+  }
 
   return (
     <div>
