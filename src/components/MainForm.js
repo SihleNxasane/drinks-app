@@ -68,7 +68,8 @@ function MainForm() {
           },
         }
       );
-      console.log("Decision", response.data);
+      setDecision(response.data.data.attributes.decision);
+      console.log("Decision", response.data.data);
     } catch (error) {
       console.log("Error querying the model: ", error);
     }
@@ -89,7 +90,7 @@ function MainForm() {
       <h1>Drink Choice</h1>
       <InputWrapper inputs={inputVariables} />
       <SubmitButton />
-      <DecisionBox decision="{decision}"/>
+      <DecisionBox decision={decision} />
     </div>
   );
 }
