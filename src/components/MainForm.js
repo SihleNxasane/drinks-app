@@ -3,7 +3,7 @@ import axios from "axios";
 
 function MainForm() {
   const [model, setModel] = useState({}); //full model for Drink Choice
-  const [inputVariables, setInputVariables] = useState([]); //questions
+  const [inputVariables, setInputVariables] = useState([]);  //questions
   const apiKey = "9307bfd5fa011428ff198bb37547f979";
   const modelId = "58d3bcf97c6b1644db73ad12";
 
@@ -85,7 +85,7 @@ function MainForm() {
       <h1>Drink Choice</h1>
       <form>
         <ul>
-          {inputVariables.map((inputVar) => (
+          {(inputVariables).map((inputVar) => (
             <li key={inputVar.name}>
               <label for={inputVar.name}>{inputVar.question} </label>
               <input
@@ -106,22 +106,3 @@ function MainForm() {
 }
 
 export default MainForm;
-
-// const mockData2 = {
-//   data: {
-//     type: "Drink choice",
-//     attributes: {
-//       input: {
-//         INPUTVAR1: 10.0,
-//         INPUTVAR2: "Male",
-//         INPUTVAR3: 20.0,
-//         INPUTVAR4: "Yes",
-//         INPUTVAR5: "Morning",
-//         INPUTVAR6: "No",
-//         INPUTVAR7: "Yes",
-//         INPUTVAR8: 1.0,
-//         INPUTVAR9: 2.0,
-//       },
-//     },
-//   },
-// };
