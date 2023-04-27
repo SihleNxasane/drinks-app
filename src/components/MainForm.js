@@ -80,11 +80,6 @@ function MainForm() {
     queryModel();
   }, []);
 
-  function submitHandler() {
-    fetchModelMetadata();
-    queryModel();
-  }
-
   return (
     <div>
       <h1>Drink Choice</h1>

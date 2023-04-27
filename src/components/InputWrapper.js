@@ -5,11 +5,15 @@ import InputBox from "./InputBox";
 function InputWrapper(props) {
   return (
     <div>
-      <ul>
+      <ul className="list-none">
         {props.inputs.map((inputVar) => (
-          <li key={inputVar.name}>
+          <li key={inputVar.name} className="flex items-center">
             <Label boxId={inputVar.name} question={inputVar.question} />
-            <InputBox id={inputVar.name} placeholder={inputVar.domain.values} />
+            <InputBox
+              id={inputVar.name}
+              placeholder={inputVar.domain.values}
+              className="flex-grow"
+            />
           </li>
         ))}
       </ul>
