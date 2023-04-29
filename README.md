@@ -1,6 +1,7 @@
 # Drink Choice App
 
 A simple ReactJS app that pulls metadata from the TOM API for the “Drink choice” model and display the model name and input variables (Questions) in a form. The main functionality of the app is to suggest a drink based on the input provided by the user. To achieve that the app queries the model then display drink suggestion (decision) on the screen.
+
 TOM API: `https://docs.up2tom.com/#introduction`
 
 ## Tech stack used
