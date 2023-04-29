@@ -12,6 +12,7 @@ function InputWrapper(props) {
             <InputBox
               id={inputVar.name}
               placeholder={inputVar.domain.values}
+              updateAnswer={props.updateAnswer}
               className="flex-grow"
             />
           </li>

@@ -1,9 +1,9 @@
 import React from "react";
 
-function SubmitButton() {
+function SubmitButton(props) {
   return (
     <div>
-      <button type="button">Submit Answers</button>
+      <button type="button" onClick={props.queryModel}>Submit Answers</button>
     </div>
   );
 }
